@@ -25,7 +25,7 @@ python-debianbts==2.6.1
 pyxdg==0.25
 PyYAML==3.12
 reportbug==7.1.7
-requests==2.12.4
+requests==2.20.0
 SecretStorage==2.3.1
 six==1.10.0
 unattended-upgrades==0.1
