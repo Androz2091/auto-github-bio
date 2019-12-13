@@ -16,7 +16,7 @@ You have to get your **openweathermap.org api key**, to allow your app to get th
 
 You have to edit the **crontab table** using `crontab -e`. Then, add the following line to this file:  
 ```sh
-5 * * * * cd /path/to/auto-github-bio && /usr/bin/python3 /path/to/auto-github-bio/main.py >> ~/cron.log 2>&1
+*/5 * * * * cd /path/to/auto-github-bio && /usr/bin/python3 /path/to/auto-github-bio/main.py >> ~/cron.log 2>&1
 ```
 This will run the script and update your biography every 5 minutes.
 
