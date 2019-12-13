@@ -61,6 +61,9 @@ def generate_bio_content(weather):
     return "Current "+config["city"]+" weather: "+weather.upper()+" | Last update: "+now+" | Made by Androz2091 using Python"
 
 def main():
+    """
+    Main code which call the other functions
+    """
     # Get the weather of the city
     weather = get_weather_of(config["city"])
     # Get the bio content
