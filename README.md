@@ -1,5 +1,7 @@
 # Automatized Github Biography
 
+📚Automatized Github biography using openweathermap.org API
+
 ## Installation
 
 ### [Github] Create your personal access token
