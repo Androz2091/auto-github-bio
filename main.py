@@ -60,8 +60,7 @@ def generate_bio_content(weather):
     # Returns the final string wich contain the city, the weather, the last update and the credits
     return "Current "+config["city"]+" weather: "+weather.upper()+" | Last update: "+now+" | Made by Androz2091 using Python"
 
-
-if(__name__ == "__main__"):
+def main():
     # Get the weather of the city
     weather = get_weather_of(config["city"])
     # Get the bio content
@@ -85,3 +84,6 @@ if(__name__ == "__main__"):
         # If Github didn't return anything
         else:
             print(log_prefix+" Something happened. Here is the Github response: "+status["message"])
+
+if(__name__ == "__main__"):
+    main()
