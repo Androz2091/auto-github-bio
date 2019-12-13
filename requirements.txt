@@ -23,7 +23,7 @@ python-apt==1.4.0b3
 python-debian==0.1.30
 python-debianbts==2.6.1
 pyxdg==0.26
-PyYAML==3.12
+PyYAML==5.1
 reportbug==7.1.7
 requests==2.20.0
 SecretStorage==2.3.1
