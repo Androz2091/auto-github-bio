@@ -58,7 +58,7 @@ def generate_bio_content(weather):
     # The current time (hours and minutes)
     now = datetime.now().strftime("%H:%M")
     # Returns the final string wich contain the city, the weather, the last update and the credits
-    return "Current "+config["city"]+" weather: "+weather.upper()+" | Last update: "+now+" | Made by Androz2091 using Python"
+    return "Current weather in "+config["city"]+": "+weather.upper()+" | Last update: "+now+" | Made by Androz2091 using Python"
 
 def main():
     """
