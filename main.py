@@ -1,13 +1,22 @@
+# /usr/bin/python3
+
 # Used to make call to the github API
 import requests
 # Used to read the config file
 import json
 # Used to display the last update
 from datetime import datetime
+# Used to get the values of the args entered on the command line
+import sys
 
-# Read the config file
-with open("config.json", "r") as f:
-    config = json.load(f)
+if len(sys.argv) < 5:
+    exit('Missing arguments...')
+
+# Some useful variabiles
+github_token = str(sys.argv[1])
+weather_token = str(sys.argv[2])
+city_name = str(sys.argv[3])
+temp_units = str(sys.argv[4])
 
 
 def update_bio(text):
@@ -27,7 +36,7 @@ def update_bio(text):
 
     url = "https://api.github.com/user"
     headers = {
-        "Authorization": "token " + config["github"],
+        "Authorization": "token " + github_token,
         "Content-Type": "application/json"
     }
     response = requests.patch(url, json.dumps(bio), headers=headers)
@@ -47,7 +56,7 @@ def get_weather_of(city):
     """
     # Open Weather Map API Base url
     base_url = "http://api.openweathermap.org/data/2.5/weather?appid=" + \
-        config["weather"] + "&q=" + city + "&units=" + config["units"]
+        weather_token + "&q=" + city + "&units=" + temp_units
     response = requests.get(base_url)
     data = response.json()
     # Returns weather info
@@ -67,12 +76,12 @@ def generate_bio_content(weather):
     # The current time (hours and minutes)
     now = datetime.now().strftime("%H:%M")
 
-    # Some useful variables
+    # Some other useful variables
     desc = weather["weather"][0]["description"]
     temp = round(weather["main"]["temp"])
-    temp_symbol = '°C' if config['units'] == 'metric' else '°F' if config['units'] == 'imperial' else 'K'
+    temp_symbol = '°C' if temp_units == 'metric' else '°F' if temp_units == 'imperial' else 'K'
     feels_like = round(weather['main']["feels_like"])
-    city = config["city"]
+    city = city_name
 
     # Returns the final string wich contain the city, the current temp, the felt temp, the weather, the last update and the credits
     return "Current weather in " + city + ": " + str(temp) + str(temp_symbol) + ". " + "Feels like " + str(feels_like) + str(temp_symbol) + ". " + str(desc.upper()) + \
@@ -84,7 +93,7 @@ def main():
     Main code which call the other functions
     """
     # Get the weather of the city
-    weather = get_weather_of(config["city"])
+    weather = get_weather_of(city_name)
     # Get the bio content
     bio_content = generate_bio_content(weather)
     # Update the biography
