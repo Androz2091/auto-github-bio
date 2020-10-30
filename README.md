@@ -14,7 +14,7 @@ You have to get your **openweathermap.org api key**, to allow your app to get th
 
 ### [Github Secrets] Add some secrets
 
-* `GITHUB_TOKEN` the **personal access token** you just created above.
+* `GH_TOKEN` the **personal access token** you just created above.
 * `WEATHER_TOKEN` the **openweathermap.org api key** you just created above.
 * `CITY_NAME` the **name of the city** you want to take the weather from. (it must be valid, you can check it: https://openweathermap.org/)
 * `TEMP_UNITS` the **unit of measurement** in which you want the temperature to be displayed. (the available ones can be found here: https://openweathermap.org/current#data)
@@ -36,7 +36,7 @@ You have to get your **openweathermap.org api key**, to allow your app to get th
         TEMP_UNITS: ${{ secrets.TEMP_UNITS }}
      run: |
        git clone https://github.com/LeonardSSH/auto-github-bio.git auto-github-bio
-       python auto-github-bio/main.py $GITHUB_TOKEN $WEATHER_TOKEN $CITY_NAME $TEMP_UNITS
+       python auto-github-bio/main.py $GH_TOKEN $WEATHER_TOKEN $CITY_NAME $TEMP_UNITS
 ```
 
 This will run the script and update your biography every 5 minutes.
