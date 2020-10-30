@@ -70,11 +70,13 @@ def generate_bio_content(weather):
     # Some useful variables
     desc = weather["weather"][0]["description"]
     temp = round(weather["main"]["temp"])
+    temp_symbol = '°C' if config['units'] == 'metric' else '°F' if config['units'] == 'imperial' else 'K'
     feels_like = round(weather['main']["feels_like"])
     city = config["city"]
 
     # Returns the final string wich contain the city, the current temp, the felt temp, the weather, the last update and the credits
-    return "Current weather in " + city + ": " + str(temp) + "°C. " + "Feels like " + str(feels_like) + "°C. " + str(desc.upper()) + " | Last update: " + now + " | Made by Androz2091 & LeonardSSH using Python"
+    return "Current weather in " + city + ": " + str(temp) + str(temp_symbol) + ". " + "Feels like " + str(feels_like) + str(temp_symbol) + ". " + str(desc.upper()) + \
+        " | Last update: " + now + " | Made by Androz2091 & LeonardSSH using Python"
 
 
 def main():
