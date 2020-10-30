@@ -2,5 +2,5 @@
     "github"    : "Github API Key",
     "weather"   : "OpenWeatherMap API Key",
     "city"      : "Toulouse",
-    "units":    : "metric"
+    "units"     : "metric"
 }
