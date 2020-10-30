@@ -13,24 +13,32 @@ with open("config.json", "r") as f:
 def update_bio(text):
     """
     Update the Github biography of the user
-    
+
     Args:
         text (str): The new biography content
 
     Returns:
         data (any): The Github response
     """
-    url         = "https://api.github.com/user"
-    headers     = { "Authorization": "token "+config["github"], "Content-Type" : "text/plain" }
-    response    = requests.patch(url, '{ "bio": "'+text+'" }', headers=headers)
-    data        = response.json()
+
+    bio = {
+        "bio": text
+    }
+
+    url = "https://api.github.com/user"
+    headers = {
+        "Authorization": "token " + config["github"],
+        "Content-Type": "application/json"
+    }
+    response = requests.patch(url, json.dumps(bio), headers=headers)
+    data = response.json()
     return data
 
 
 def get_weather_of(city):
     """
     Get the weather of a specific city
-    
+
     Args:
         city (str): The name of the city whose weather we want
 
@@ -38,11 +46,12 @@ def get_weather_of(city):
         weather (str): The weather of the city
     """
     # Open Weather Map API Base url
-    base_url = "http://api.openweathermap.org/data/2.5/weather?appid="+config["weather"]+"&q="+city
+    base_url = "http://api.openweathermap.org/data/2.5/weather?appid=" + \
+        config["weather"] + "&q=" + city + "&units=" + config["units"]
     response = requests.get(base_url)
-    data     = response.json()
-    # Returns weather info (snow, rain, clouds, etc...)
-    return data["weather"][0]["main"]
+    data = response.json()
+    # Returns weather info
+    return data
 
 
 def generate_bio_content(weather):
@@ -57,8 +66,16 @@ def generate_bio_content(weather):
     """
     # The current time (hours and minutes)
     now = datetime.now().strftime("%H:%M")
-    # Returns the final string wich contain the city, the weather, the last update and the credits
-    return "Current weather in "+config["city"]+": "+weather.upper()+" | Last update: "+now+" | Made by Androz2091 using Python"
+
+    # Some useful variables
+    desc = weather["weather"][0]["description"]
+    temp = round(weather["main"]["temp"])
+    feels_like = round(weather['main']["feels_like"])
+    city = config["city"]
+
+    # Returns the final string wich contain the city, the current temp, the felt temp, the weather, the last update and the credits
+    return "Current weather in " + city + ": " + str(temp) + "°C. " + "Feels like " + str(feels_like) + "°C. " + str(desc.upper()) + " | Last update: " + now + " | Made by Androz2091 & LeonardSSH using Python"
+
 
 def main():
     """
@@ -81,12 +98,16 @@ def main():
         if "message" in status:
             # If the error is caused by the personal access token
             if status["message"] == "Bad credentials":
-                print(log_prefix+" Seems like your Github personal access token is invalid...")
+                print(
+                    log_prefix+" Seems like your Github personal access token is invalid...")
             else:
-                print(log_prefix+" Something happened. Message is the following: "+status["message"])
+                print(
+                    log_prefix+" Something happened. Message is the following: "+status["message"])
         # If Github didn't return anything
         else:
-            print(log_prefix+" Something happened. Here is the Github response: "+status["message"])
+            print(
+                log_prefix+" Something happened. Here is the Github response: "+status["message"])
+
 
 if(__name__ == "__main__"):
     main()
