@@ -21,22 +21,33 @@ You have to get your **openweathermap.org api key**, to allow your app to get th
 
 ### Run the script every 5 minutes using Github Actions
 
-- To see a real example, visit [here](https://github.com/unthreaded/git-hooks/blob/92ea6bde348431fbe25d05c33398c969eec5d3ee/.github/workflows/build.yml#L48).
 ```yaml
-   - name: Setup Python
-     uses: actions/setup-python@v2
-     with:
-       python-version: 3.8 
-   - name: Execute py script
-     if: always()
-     env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        WEATHER_TOKEN: ${{ secrets.WEATHER_TOKEN }}
-        CITY_NAME: ${{ secrets.CITY_NAME }}
-        TEMP_UNITS: ${{ secrets.TEMP_UNITS }}
-     run: |
-       git clone https://github.com/LeonardSSH/auto-github-bio.git auto-github-bio
-       python auto-github-bio/main.py $GH_TOKEN $WEATHER_TOKEN $CITY_NAME $TEMP_UNITS
+name: Automatized Github Biography
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  auto-github-bio:
+    name: Automatized Github Biography
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8 
+      - name: Execute py script
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WEATHER_TOKEN: ${{ secrets.WEATHER_TOKEN }}
+          CITY_NAME: ${{ secrets.CITY_NAME }}
+          TEMP_UNITS: ${{ secrets.TEMP_UNITS }}
+        run: |
+         git clone https://github.com/LeonardSSH/auto-github-bio.git auto-github-bio
+         python auto-github-bio/main.py $GH_TOKEN $WEATHER_TOKEN $CITY_NAME $TEMP_UNITS
+
 ```
 
 This will run the script and update your biography every 5 minutes.
