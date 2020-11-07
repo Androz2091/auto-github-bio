@@ -5,7 +5,7 @@ configobj==5.0.6
 cryptography==1.7.1
 httplib2==0.18.0
 idna==2.2
-Jinja2==2.8
+Jinja2==2.10.1
 jsonpatch==1.10
 jsonpointer==1.10
 jsonschema==2.5.1
