@@ -76,7 +76,7 @@ def generate_bio_content(weather):
 
     # Returns the final string wich contain the city, the current temp, the felt temp, the weather, the last update and the credits
     return "Current weather in " + city + ": " + str(temp) + str(temp_symbol) + ". " + "Feels like " + str(feels_like) + str(temp_symbol) + ". " + str(desc.upper()) + \
-        " | Last update: " + now + " | Made by @Androz2091 & @LeonardSSH using Python"
+        " | Last update: " + now + " | Made using Python"
 
 
 def main():
