@@ -26,6 +26,8 @@ Congratulations, you have successfully installed Automatized Github Biography. F
 
 ### Support me on patreon
 
+Thanks to **[LeonardSSH](https://github.com/LeonardSSH)** for their contributions!
+
 Feel free to support me on Patreon so that I can continue to finance my open source projects! Thanks!  
 
 <a href="https://www.patreon.com/bePatron?u=20304709"><img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png"></a>
