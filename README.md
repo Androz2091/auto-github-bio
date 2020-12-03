@@ -4,7 +4,7 @@
 
 Remember to 🌟 this Github if you 💖 it.
 
-![a1](https://i.imgur.com/KGCXkgi.png)
+![a1](https://i.imgur.com/RGvPQjt.png)
 
 ## Installation
 
