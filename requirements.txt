@@ -3,7 +3,7 @@ chardet==2.3.0
 cloud-init==18.3
 configobj==5.0.6
 cryptography==3.2
-httplib2==0.18.0
+httplib2==0.19.0
 idna==2.2
 Jinja2==2.10.1
 jsonpatch==1.10
